@@ -1,20 +1,40 @@
 # 🔁 ChangeDetection 2.0 — SAM-Powered Difference Detector
 
-``A simple math based spot the difference model, enhanced using SAM model``
-
-Okay, so basically this is my new attempt at making a smarter change detection model — not just the boring "something changed" kind, but more like:
-
-> “Hey, this button shifted to the left... and also, this part here got replaced with something new.”
-
-The whole idea is to **segment out what actually changed** between two images (UI, scenes, whatever) using a clean combo of:
-- basic **image difference** difference = img1 - img2
-- **contour-based region extraction** on the difference mask, to point prompt the SAM model 
-- and **SAM (Segment Anything Model)** to get the actual object segments
-
+> *“A simple math-based spot-the-difference model, enhanced using SAM model.”*
 
 ---
 
-### 💡 What's Done So Far
+## 📸 Image Comparison Demo
+
+| 🖼️ Image A | 🖼️ Image B |
+|-----------|-----------|
+| <img src="difference1.jpg" width="300"/> | <img src="difference2.jpg" width="300"/> |
+
+⬇️ **Segmented Difference Output**  
+<p align="center">
+  <img src="Results/difference_segmented.jpg" width="500"/>
+</p>
+
+---
+
+Okay, so basically this is my new attempt at making a smarter change detection model —  
+not just the boring:
+
+> “Something changed here”
+
+But more like:
+
+> “Yo, this button shifted to the left... and this section over here got replaced with something new.”
+
+The whole idea is to **segment out what actually changed** between two images (UI, scenes, etc.) using this clean combo:
+
+- 📐 Basic **image difference** → `difference = img1 - img2`
+- 🔍 **Contour-based region extraction** on the diff mask to point prompt the segmentation
+- 🤖 **SAM (Segment Anything Model)** to get precise masks of changed objects
+
+---
+
+## 💡 What's Done So Far
 
 I’ve already got the core pipeline running:
 - Take two images (before and after)
@@ -22,7 +42,8 @@ I’ve already got the core pipeline running:
 - Use **contour detection** to extract areas that seem to have changed
 - Pass those as input points into **SAM** to get exact masks of what changed
 
-So visually, the pipeline looks like this:
+
+So visually, here’s what the pipeline looks like:
 
 ```plaintext
 Image A   Image B
@@ -31,4 +52,5 @@ Image A   Image B
                                    │
                          (Region-level Change Maps)
 ```
-**Btw there is no changedetection1.0 algorithm on my github, cause it was my first internship project, and I gotta respect NDA**
+
+## Btw there is no ChangeDetection 1.0 on GitHub — that was my internship project under NDA, so can't share it here. Respect ✊.##

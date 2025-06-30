@@ -8,7 +8,7 @@ from scipy import ndimage
 import torch
 
 class ChangeDetectionSAM:
-    def __init__(self, sam_model_name="facebook/sam-vit-base"):
+    def __init__(self, sam_model_name="facebook/sam-vit-huge"):
         
         self.model = SamModel.from_pretrained(sam_model_name)
         self.processor = SamProcessor.from_pretrained(sam_model_name)
@@ -215,18 +215,20 @@ if __name__ == "__main__":
     
     detector = ChangeDetectionSAM()
     
-    path1 = './TestImages/ultrasonicsensor1.jpg'
-    path2 = './TestImages/ultrasonicsensor2.jpg'
-    
+    path1 = './TestImages/macaroni1.JPG'
+    path2 = './TestImages/macaroni2.JPG'
+        
     # Load your images (replace with your actual images)
     img1 = cv2.imread(path1)
     img2 = cv2.imread(path2)
     # candle\Data\Images\Normal\0000.JPG
     print(f"Image shapes: {img1.shape}, {img2.shape}")
+    if img1.shape != img2.shape:
+        img2 = cv2.resize(img2, (img1.shape[0], img1.shape[1]))
     # Process the images
     results = detector.process_change_detection(
         img1, img2,
-        threshold=70,
+        threshold=90,
         min_area=100,
         max_contours=5,
         point_strategy='centroid'
@@ -234,7 +236,9 @@ if __name__ == "__main__":
     
     print(f"Results: {results.keys()}")
     # Visualize results
-    detector.process_and_save(img1, img2, results, save_path=path2[path2.find("./TestImages/")+len("./TestImages/"):path2.find(".jpg")-1])
+    
+    save_path = path2[path2.find("./TestImages/")+len("./TestImages/"):path2.find(".jpg")-1]
+    detector.process_and_save(img1, img2, results, save_path=save_path)
     
     # Print information about detected changes
     print(f"Number of significant contours found: {len(results['contours'])}")
