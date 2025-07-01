@@ -8,11 +8,11 @@
 
 | 🖼️ Image A | 🖼️ Image B |
 |-----------|-----------|
-| <img src="difference1.jpg" width="300"/> | <img src="difference2.jpg" width="300"/> |
+| <img src="difference1.jpg" width="200"/> | <img src="difference2.jpg" width="200"/> |
 
 ⬇️ **Segmented Difference Output**  
 <p align="center">
-  <img src="Results/difference_segmented.jpg" width="500"/>
+  <img src="Results/difference_segmented.jpg" width="300" height="300"/>
 </p>
 
 ---
