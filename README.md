@@ -10,6 +10,10 @@
 |-----------|-----------|-----------|
 | <img src="difference1.jpg" width="200"/> | <img src="difference2.jpg" width="200"/> | <img src="Results/difference_segmented.jpg" width="300"/> |
 
+| 🖼️ Image A | 🖼️ Image B | 🖼️ Segmented Difference Output |
+|-----------|-----------|-----------|
+| <img src="TestImages\macaroni1.JPG" width="200"/> | <img src="TestImages\macaroni2.JPG" width="200"/> | <img src="Results\macaroni2.J_segmented.jpg" width="300"/> |
+
 ---
 
 Okay, so basically this is my new attempt at making a smarter change detection model —  
